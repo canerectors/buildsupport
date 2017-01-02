@@ -2,7 +2,7 @@ docker-compose -f .\docker-compose.dev.yaml pull
 
 docker-compose -f .\docker-compose.dev.yaml up -d
 
-.\status.ps1
+.\docker_support\status.ps1
 
 $idsrvIp = docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' canerectorswebapi_idsrv_1
 
