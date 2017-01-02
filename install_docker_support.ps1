@@ -1,1 +1,1 @@
-Write-Host Working
+Write-Host Get-Location
