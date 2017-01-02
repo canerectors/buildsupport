@@ -1,6 +1,6 @@
-docker-compose -f .\docker-compose.dev.yaml pull
+docker-compose -f .\docker-compose.yaml pull
 
-docker-compose -f .\docker-compose.dev.yaml up -d
+docker-compose -f .\docker-compose.yaml up -d
 
 .\docker_support\status.ps1
 
@@ -14,11 +14,8 @@ $ravenUrl = "http://" + $ravenIp + ":8080"
 $idsrvUrl = "http://" + $idsrvIp
 $webloggerUrl = "http://" + $webloggerIp
 
-setx "RavenDb:ServerUrl" $ravenUrl
-setx "IDServerAuthority" $idsrvUrl
-
-#cmd.exe /c "taskkill /IM explorer.exe /F"
-#cmd.exe /c "explorer.exe"
+setx "RavenDb:ServerUrl" $ravenUrl >$null
+setx "IDServerAuthority" $idsrvUrl >$null
 
 write-host
 write-host "You will need to restart visual studio."
