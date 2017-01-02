@@ -1,1 +1,3 @@
-Write-Host Get-Location
+Write-Host Installing Docker Support files to: $(Get-Location)...
+
+md .\docker_support
