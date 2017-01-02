@@ -9,3 +9,4 @@ iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_sup
 iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/status.ps1 -UseBasicParsing -OutFile .\docker_support\status.ps1
 iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/setup.ps1 -UseBasicParsing -OutFile .\docker_support\setup.ps1
 iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/launch.ps1 -UseBasicParsing -OutFile .\docker_support\launch.ps1
+iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/Get-Service-Urls.ps1 -UseBasicParsing -OutFile .\docker_support\Get-Service-Urls.ps1
