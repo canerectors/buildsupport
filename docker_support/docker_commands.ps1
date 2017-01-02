@@ -7,7 +7,9 @@ Write-Host "5) Launch Containers"
 
 Write-Host
 
-Set-Variable -Name "Action" -Value (Read-Host -Prompt "What would you like to do (hit enter to exit)?")
+$Action = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
+#Set-Variable -Name "Action" -Value (Read-Host -Prompt "What would you like to do (hit enter to exit)?")
 
 switch ($Action) 
 { 
