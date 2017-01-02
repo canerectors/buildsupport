@@ -1,0 +1,1 @@
+docker exec -it canerectorswebapi_idsrv_1 cmd
