@@ -6,6 +6,7 @@ Write-Host "4) View Status"
 Write-Host "5) Launch Containers"
 
 Write-Host
+Write-Host "What would you like to do (hit enter to exit)?"
 
 $Action = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
