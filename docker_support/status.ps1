@@ -14,5 +14,4 @@ write-host
 write-host Identity Server is accessable at: $idsrvUrl
 write-host
 write-host WebLogger is accessable at: $webloggerUrl
-
-pause
+write-host

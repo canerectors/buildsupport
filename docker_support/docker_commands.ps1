@@ -9,9 +9,7 @@ Write-Host
 
 $Action = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
-#Set-Variable -Name "Action" -Value (Read-Host -Prompt "What would you like to do (hit enter to exit)?")
-
-switch ($Action) 
+switch ($Action.Character.ToString()) 
 { 
     1 {& .\docker_support\setup.ps1} 
     2 {& .\docker_support\stop.ps1} 
