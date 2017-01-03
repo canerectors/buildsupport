@@ -13,4 +13,6 @@ if(-not (Test-Path $dockerd)){
     & $dockerd --register-service
 
     Start-Service Docker
+	
+	choco install -y docker-compose
 }
