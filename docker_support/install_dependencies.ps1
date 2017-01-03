@@ -8,5 +8,5 @@ else
     Write-Debug 'Chocolatey Already Installed.'
 }
 
-#choco install -y docker -pre
+choco install -y docker-for-windows -pre
 #choco install -y docker-compose
