@@ -1,1 +1,1 @@
-.\docker_support\Get-Service-Urls.ps1 | % { $line = $_ -split ' '; & start $line[1]  }
+.\docker_support\Get-Services.ps1 | % { & start $_.Url }

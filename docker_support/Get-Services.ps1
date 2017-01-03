@@ -13,6 +13,12 @@ For ($i=2; $i -le $arr.Length; $i++) {
     $port = (($line -like '*/tcp') -split '/')[0]
     $ip = docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $serviceName
 
-    Write-Output "$serviceName http://${ip}:$port"
+    $obj = new-object psobject
+    $obj | add-member noteproperty Name $serviceName
+    $obj | add-member noteproperty IPAddress $ip
+    $obj | add-member noteproperty Port $port
+    $obj | add-member noteproperty Url "http://${ip}:$port"
 
-    }
+    write-output $obj
+
+}
