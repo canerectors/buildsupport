@@ -5,7 +5,7 @@ while(-not $done)
     Write-Host "`nSelect An Action:`n"
     Write-Host "1) Run Development Environment Docker Containers"
     Write-Host "2) Pause Docker Containers"
-    Write-Host "3) Remove Docker Containers"
+    Write-Host "3) Remove Docker Containers (This will destroy all data located inside the containers)" -ForegroundColor Red
     Write-Host "4) View Container IP Addresses"
 	Write-Host "5) View Container Status"
     Write-Host "6) Launch Containers"
