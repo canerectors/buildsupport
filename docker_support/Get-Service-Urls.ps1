@@ -13,6 +13,6 @@ For ($i=2; $i -le $arr.Length; $i++) {
     $port = (($line -like '*/tcp') -split '/')[0]
     $ip = docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $serviceName
 
-    Write-Output "$serviceName http://${ip}:$port`n"
+    Write-Output "$serviceName http://${ip}:$port"
 
     }
