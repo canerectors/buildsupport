@@ -8,6 +8,4 @@ else
     Write-Debug 'Chocolatey Already Installed.'
 }
 
-choco install -y docker-for-windows -pre
-
-
+.\Enable-WindowsContainers.ps1
