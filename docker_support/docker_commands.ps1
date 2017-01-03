@@ -22,7 +22,7 @@ while(-not $done)
         2 {& docker-compose stop } 
         3 {& docker-compose down } 
         4 {& .\docker_support\Get-IPAddresses.ps1 }
-		4 {& docker-compose ps }
+		5 {& docker-compose ps }
         6 {& .\docker_support\launch.ps1 } 
         7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
         default {$done = $true}
