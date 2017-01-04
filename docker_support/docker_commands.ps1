@@ -1,8 +1,13 @@
 $done = $false
 
+$projectName = (Get-ChildItem *.sln).Name -replace ".sln", ""
+
 while(-not $done)
 {     
-    Write-Host "`nSelect An Action:`n"
+
+    Write-Host "`nProject: $projectName`n"
+
+    Write-Host "Select An Action:`n"
     Write-Host "1) Run Development Environment Docker Containers"
     Write-Host "2) Pause Docker Containers"
     Write-Host "3) Remove Docker Containers (This will destroy all data located inside the containers)" -ForegroundColor Red
