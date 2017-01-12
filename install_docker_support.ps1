@@ -1,13 +1,17 @@
+function Get-Script {
+    $scriptName = $args[0] + '.ps1'
+    iwr "https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/$scriptName" -UseBasicParsing -OutFile ".\docker_support\$scriptName"
+}
+
 Write-Host "Installing Docker Support files to: $(Get-Location)\docker_support..."
 
 md .\docker_support *> $null
 
-#install dependencies
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/Disable-WindowsContainers.ps1 -UseBasicParsing -OutFile .\docker_support\Disable-WindowsContainers.ps1
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/Enable-WindowsContainers.ps1 -UseBasicParsing -OutFile .\docker_support\Enable-WindowsContainers.ps1
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/install_dependencies.ps1 -UseBasicParsing | iex
-
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/docker_commands.ps1 -UseBasicParsing -OutFile .\docker_support\docker_commands.ps1
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/setup.ps1 -UseBasicParsing -OutFile .\docker_support\setup.ps1
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/launch.ps1 -UseBasicParsing -OutFile .\docker_support\launch.ps1
-iwr https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/Get-Services.ps1 -UseBasicParsing -OutFile .\docker_support\Get-Services.ps1
+Get-Script Disable-WindowsContainers
+Get-Script Enable-WindowsContainers
+Get-Script install_dependencies
+Get-Script docker_commands
+Get-Script setup
+Get-Script launch
+Get-Script Edit-HostsFile
+Get-Script Get-Services
