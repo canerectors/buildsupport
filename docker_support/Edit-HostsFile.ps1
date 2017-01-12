@@ -1,5 +1,3 @@
-pushd C:\CanErectors\CanErectors.Services.Steel
-
 $services = .\docker_support\Get-Services.ps1
 
 $hostsPath = "$env:windir\System32\drivers\etc\hosts"
