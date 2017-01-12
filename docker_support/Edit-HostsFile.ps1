@@ -1,7 +1,6 @@
+pushd C:\CanErectors\CanErectors.Services.Steel
+
 $services = .\docker_support\Get-Services.ps1
-
-Write-Output $services
-
 
 $hostsPath = "$env:windir\System32\drivers\etc\hosts"
 
@@ -10,13 +9,13 @@ $hosts = get-content $hostsPath
 #remove existing entries
 $hosts = $hosts | Foreach { 
     $hostLine = $_
-    $addEntry = $false
+    $addEntry = $true
 
     $services | Foreach{
     
             $serviceName = $_.Name
-    
-            if (!($hostLine -split '\s+' -contains ("#" + $serviceName))) { $addEntry = $true }
+
+            if ($hostLine -split '\s+' -contains ("#" + $serviceName)) { $addEntry = $false }
     
         }
 
