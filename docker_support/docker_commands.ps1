@@ -14,7 +14,7 @@ while(-not $done)
     Write-Host "4) View Container Urls"
 	Write-Host "5) View Container Status"
     Write-Host "6) Launch Containers"
-    Write-Host "7) Restart Explorer"
+    #Write-Host "7) Restart Explorer"
 
     Write-Host
     Write-Host "What would you like to do (hit enter to exit)?"
@@ -29,7 +29,7 @@ while(-not $done)
         4 {& .\docker_support\Get-Services.ps1 | Format-Table Name, Url}
 		5 {& docker-compose ps }
         6 {& .\docker_support\launch.ps1 } 
-        7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
+        #7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
         default {$done = $true}
     }
 }

@@ -12,8 +12,6 @@ $hosts = $hosts | Foreach {
     $hostLine = $_
     $addEntry = $false
 
-    Write-Host $hostLine
-
     $services | Foreach{
     
             $serviceName = $_.Name
