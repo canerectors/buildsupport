@@ -15,3 +15,4 @@ Get-Script setup
 Get-Script launch
 Get-Script Edit-HostsFile
 Get-Script Get-Services
+Get-Script launch-consolelogger
