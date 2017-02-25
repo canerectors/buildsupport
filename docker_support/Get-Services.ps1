@@ -17,7 +17,7 @@ For ($i=2; $i -le $arr.Length; $i++) {
     $obj | add-member noteproperty Name $serviceName
     $obj | add-member noteproperty IPAddress $ip
     $obj | add-member noteproperty Port $port
-    $obj | add-member noteproperty Url "http://${ip}:$port"
+    $obj | add-member noteproperty Url "http://${serviceName}:$port"
 	$obj | add-member noteproperty ServiceName ($serviceName -split '_')[1]
 
     write-output $obj
