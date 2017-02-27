@@ -6,6 +6,7 @@ function Get-Script {
 Write-Host "Installing Docker Support files to: $(Get-Location)\docker_support..."
 
 md .\docker_support *> $null
+md .\docker_support\docker_zap *> $null
 
 Get-Script Disable-WindowsContainers
 Get-Script Enable-WindowsContainers
@@ -16,7 +17,5 @@ Get-Script launch
 Get-Script Edit-HostsFile
 Get-Script Get-Services
 Get-Script launch-consolelogger
-
-mkdir -Force .\docker_support\docker_zap
 
 iwr "https://github.com/canerectors/buildsupport/raw/master/docker_support/docker_zap/docker-ci-zap.exe" -UseBasicParsing -OutFile ".\docker_support\docker_zap\docker-ci-zap.exe"
