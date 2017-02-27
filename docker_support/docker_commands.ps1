@@ -36,7 +36,7 @@ while(-not $done)
         4 {& .\docker_support\Get-Services.ps1 | Format-Table Name, Url, IPAddress }
 		5 {& docker-compose ps }
         6 {& .\docker_support\launch.ps1 }
-		7 {& net stop docker; .\docker_support\docker_zap\docker-ci-zap -folder C:\ProgramData\Docker }
+		7 {& net stop docker; .\docker_support\docker_zap\docker-ci-zap -folder C:\ProgramData\Docker; net start docker }
 		#7 {& .\docker_support\launch-consolelogger.ps1 } 
         #7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
         default
