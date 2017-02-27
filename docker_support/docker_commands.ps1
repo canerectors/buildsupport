@@ -17,7 +17,7 @@ while(-not $done)
         Write-Host "4) View Container Urls"
 	    Write-Host "5) View Container Status"
         Write-Host "6) Launch Containers"
-	    Write-Host "7) Open Console Logger"
+	    Write-Host "7) Docker Zap" -ForegroundColor Red
         #Write-Host "7) Restart Explorer"
 
         Write-Host
