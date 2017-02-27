@@ -6,7 +6,7 @@ function Get-Script {
 Write-Host "Installing Docker Support files to: $(Get-Location)\docker_support..."
 
 md .\docker_support *> $null
-$zapPath = .\docker_support\docker_zap
+$zapPath = '.\docker_support\docker_zap'
 
 Get-Script Disable-WindowsContainers
 Get-Script Enable-WindowsContainers
