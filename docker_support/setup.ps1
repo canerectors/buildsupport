@@ -2,6 +2,8 @@ $serviceName = (Get-Item .).Name.split('.')[2]
 
 $env:SERVICE_NAME=$serviceName
 
+md "c:\RavenDb\Services\$serviceName" -Force
+
 docker-compose -f .\docker-compose.yaml pull
 
 docker-compose -f .\docker-compose.yaml up -d
