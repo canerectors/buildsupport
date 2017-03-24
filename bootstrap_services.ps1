@@ -1,5 +1,8 @@
-git clone git@github.com:canerectors/CanErectors.Services.Bootstrap c:\services
+$serviceFolder = 'c:\CanErectors\Services'
+$bootStrapFolder = "$serviceFolder\bootstrap"
 
-pushd c:\test\test
+git clone git@github.com:canerectors/CanErectors.Services.Bootstrap $bootStrapFolder
+
+pushd $bootStrapFolder
 
 ./start.bat
