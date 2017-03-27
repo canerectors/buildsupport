@@ -17,8 +17,9 @@ while(-not $done)
         Write-Host "4) View Container Urls"
 	    Write-Host "5) View Container Status"
 		Write-Host "6) Pause Docker Containers"
+		Write-Host "7) View Logs"
 		Write-Host
-        Write-Host "7) Remove Docker Containers (This will destroy all data located inside the containers)" -ForegroundColor Red
+        Write-Host "8) Remove Docker Containers (This will destroy all data located inside the containers)" -ForegroundColor Red
 	    #Write-Host "7) Docker Zap" -ForegroundColor Red
         #Write-Host "7) Restart Explorer"
 
@@ -38,7 +39,8 @@ while(-not $done)
         4 {& .\docker_support\Get-Services.ps1 | Format-Table Name, Url, IPAddress }
 		5 {& docker-compose ps }
 		6 {& docker-compose stop } 		
-		7 {& docker-compose down } 
+		7 {& start "docker-compose" "logs -f" } 	
+		8 {& docker-compose down } 
 		#7 {& net stop docker; .\docker_support\docker_zap\docker-ci-zap -folder C:\ProgramData\Docker; net start docker }
 		#7 {& .\docker_support\launch-consolelogger.ps1 } 
         #7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
