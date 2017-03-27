@@ -34,7 +34,7 @@ while(-not $done)
     switch ($Action.Character.ToString()) 
     { 
         1 {& .\docker_support\setup.ps1 } 
-		2 {& docker-compose -f .\docker-compose.yaml pull; .\images_remove_dangling.bat }        
+		2 {& docker-compose -f .\docker-compose.yaml pull; & .\docker_support\images_remove_dangling.ps1 }        
         3 {& .\docker_support\launch.ps1 }
         4 {& .\docker_support\Get-Services.ps1 | Format-Table Name, Url, IPAddress }
 		5 {& docker-compose ps }

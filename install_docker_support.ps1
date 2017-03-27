@@ -17,6 +17,7 @@ Get-Script launch
 Get-Script Edit-HostsFile
 Get-Script Get-Services
 Get-Script launch-consolelogger
+Get-Script images_remove_dangling
 
 #if (-not (Test-Path $zapPath)) {
 #	md $zapPath *> $null
