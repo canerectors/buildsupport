@@ -18,7 +18,7 @@ Get-Script Edit-HostsFile
 Get-Script Get-Services
 Get-Script launch-consolelogger
 
-if (-not (Test-Path $zapPath)) {
-	md $zapPath *> $null
-	iwr "https://github.com/canerectors/buildsupport/raw/master/docker_support/docker_zap/docker-ci-zap.exe" -UseBasicParsing -OutFile ".\docker_support\docker_zap\docker-ci-zap.exe"
-}
+#if (-not (Test-Path $zapPath)) {
+#	md $zapPath *> $null
+#	iwr "https://github.com/canerectors/buildsupport/raw/master/docker_support/docker_zap/docker-ci-zap.exe" -UseBasicParsing -OutFile ".\docker_support\docker_zap\docker-ci-zap.exe"
+#}
