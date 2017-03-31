@@ -14,12 +14,17 @@ while(-not $done)
         Write-Host
 	    
         $index = 1
-		foreach($service in .\Get-Services.ps1){
+
+        $services = & "$PSScriptRoot\Get-Services.ps1"
+
+		foreach($service in $services){
         
             $commands += "docker rm -f $($service.Name)"
             Write-Host "$index) Kill $($service.ServiceName)"
             $index++
         }
+
+        if(!$services) { Write-Host "No services running." }        
 	   	
         Write-Host
         Write-Host -NoNewline "What would you like to do? (hit enter to exit)"

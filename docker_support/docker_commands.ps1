@@ -1,8 +1,57 @@
+$scriptsFolder = $args[0]
+
+if(!$scriptsFolder){
+    $scriptsFolder = '.\docker_support'
+}
+
 $done = $false
 
 $projectName = (Get-ChildItem *.sln).Name -replace ".sln", ""
 
 $displayMenu = $true
+
+$menu = @"
+[
+    {
+        Text : "Run Development Environment Docker Containers",
+        Command : "$PSScriptRoot\setup.ps1"
+    },
+    {
+        Text : "Pull New Images",
+        Command : "docker-compose pull; $PSScriptRoot\images_remove_dangling.ps1"
+    },
+    {
+        Text : "Container Admin",
+        Command : "$PSScriptRoot\Container-Admin.ps1"
+    },
+    {
+        Text : "Launch Containers",
+        Command : "$PSScriptRoot\launch.ps1"
+    },
+    {
+        Text : "View Container Urls",
+        Command : "$PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress"
+    },
+    {
+        Text : "View Container Status",
+        Command : "docker-compose ps"
+    },
+    {
+        Text : "Pause Containers",
+        Command : "docker-compose stop"
+    },
+    {
+        Text : "View Logs",
+        Command : "start \"docker-compose\" \"logs -f\""
+    },
+    {
+        Text : "Remove Docker Containers (This will destroy all data located inside the containers)",
+        Command : "docker-compose down",
+        Skip : "true",
+        Color : "Red"
+    } 
+]
+"@.Replace("\", "\\").Replace('\\"', '\"') | ConvertFrom-Json
 
 while(-not $done)
 {     
@@ -11,17 +60,24 @@ while(-not $done)
         Write-Host "`nProject: $projectName`n"
 
         Write-Host "Select An Action:`n"
-        Write-Host "1) Run Development Environment Docker Containers"
-		Write-Host "2) Pull New Images"        
-		Write-Host "3) Launch Containers"        
-        Write-Host "4) View Container Urls"
-	    Write-Host "5) View Container Status"
-		Write-Host "6) Pause Docker Containers"
-		Write-Host "7) View Logs"
-		Write-Host
-        Write-Host "8) Remove Docker Containers (This will destroy all data located inside the containers)" -ForegroundColor Red
-	    #Write-Host "7) Docker Zap" -ForegroundColor Red
-        #Write-Host "7) Restart Explorer"
+
+        $index = 1
+		ForEach($item in $menu){        
+
+            if($item.Skip -eq "true"){
+                Write-Host; 
+            }
+
+            $color = 'White'
+
+            if($item.Color){
+                $color = $item.Color
+            }
+            
+            Write-Host "$index) $($item.Text)" -ForegroundColor $color
+            $index++
+                        
+        }
 
         Write-Host
         Write-Host -NoNewline "What would you like to do (hit enter to exit)? "
@@ -31,23 +87,14 @@ while(-not $done)
 
     $Action = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")    
 
-    switch ($Action.Character.ToString()) 
-    { 
-        1 {& .\docker_support\setup.ps1 } 
-		2 {& docker-compose -f .\docker-compose.yaml pull; & .\docker_support\images_remove_dangling.ps1 }        
-        3 {& .\docker_support\launch.ps1 }
-        4 {& .\docker_support\Get-Services.ps1 | Format-Table Name, Url, IPAddress }
-		5 {& docker-compose ps }
-		6 {& docker-compose stop } 		
-		7 {& start "docker-compose" "logs -f" } 	
-		8 {& docker-compose down } 
-		#7 {& net stop docker; .\docker_support\docker_zap\docker-ci-zap -folder C:\ProgramData\Docker; net start docker }
-		#7 {& .\docker_support\launch-consolelogger.ps1 } 
-        #7 {& cmd.exe /c "taskkill /IM explorer.exe /F"; & cmd.exe /c "explorer.exe"}  
-        default
-        {
-            $done = $Action.Character -eq 13
-            $displayMenu = $false
-        }
+    [int]$returnedInt = 0
+
+    if( [int]::TryParse($Action.Character.ToString(), [ref]$returnedInt) -and $returnedInt -le $menu.Count -and $returnedInt -gt 0) {
+        Write-Host
+        Invoke-Expression $($menu[$returnedInt - 1]).Command | Out-Null
     }
+    else {
+        $done = $Action.Character -eq 13
+        $displayMenu = $false
+    }  
 }
