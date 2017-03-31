@@ -1,1 +1,1 @@
-.\docker_support\Get-Services.ps1 | % { & start $_.Url }
+& $PSScriptRoot\Get-Services.ps1 | % { & start $_.Url }

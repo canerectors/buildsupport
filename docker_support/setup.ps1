@@ -11,8 +11,6 @@ if($postRun | Test-Path)
     & $postRun
 }
 
-.\docker_support\Get-Services.ps1 | Format-Table Name, Url, IPAddress
+& $PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress
 
-Write-Host Adding services to hosts file...
-
-.\docker_support\Edit-HostsFile.ps1
+& $PSScriptRoot\Edit-HostsFile.ps1

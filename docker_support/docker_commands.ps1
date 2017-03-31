@@ -46,7 +46,7 @@ $menu = @"
     },
     {
         Text : "Remove Docker Containers (This will destroy all data located inside the containers)",
-        Command : "docker-compose down",
+        Command : "$PSScriptRoot\Clean-HostsFile.ps1; docker-compose down",
         Skip : "true",
         Color : "Red"
     } 
