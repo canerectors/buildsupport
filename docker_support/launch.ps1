@@ -1,1 +1,0 @@
-& $PSScriptRoot\Get-Services.ps1 | % { & start $_.Url }

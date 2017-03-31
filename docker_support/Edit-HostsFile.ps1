@@ -1,4 +1,4 @@
-$services = & $PSScriptRoot\Get-Services.ps1
+$services = & $PSScriptRoot\View-Details.ps1
 
 $hostsPath = "$env:windir\System32\drivers\etc\hosts"
 

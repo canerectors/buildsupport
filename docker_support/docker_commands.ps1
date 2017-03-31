@@ -26,7 +26,7 @@ $menu = @"
     },
     {
         Text : "View Container Details",
-        Command : "$PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress"
+        Command : "$PSScriptRoot\View-Details.ps1 | Format-Table Name, Url, IPAddress, Status"
     },
     {
         Text : "View Container Stats",
@@ -34,7 +34,7 @@ $menu = @"
     },
     {
         Text : "Launch Containers",
-        Command : "$PSScriptRoot\launch.ps1"
+        Command : "$PSScriptRoot\Launch-Containers.ps1"
     },
     {
         Text : "Pause Containers",
@@ -46,7 +46,7 @@ $menu = @"
     },
     {
         Text : "Remove Docker Containers (This will destroy all data located inside the containers)",
-        Command : "$PSScriptRoot\Clean-HostsFile.ps1; docker-compose down",
+        Command : "$PSScriptRoot\Clean-HostsFile.ps1; docker-compose down --remove-orphans",
         Skip : "true",
         Color : "Red"
     } 

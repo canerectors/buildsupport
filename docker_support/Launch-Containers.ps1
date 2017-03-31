@@ -1,0 +1,1 @@
+& $PSScriptRoot\View-Details.ps1 | % { if($_.Port) { & start $_.Url }}

@@ -15,12 +15,20 @@ while(-not $done)
 	    
         $index = 1
 
-        $services = & "$PSScriptRoot\Get-Services.ps1"
+        $services = & "$PSScriptRoot\View-Details.ps1"
 
 		foreach($service in $services){
         
-            $commands += "docker rm -f $($service.Name)"
-            Write-Host "$index) Kill $($service.ServiceName)"
+            if($service.Status -eq "running"){
+                $commands += "docker rm -f $($service.Name)"
+                Write-Host "$index) Kill $($service.ServiceName)"
+            }
+            else {
+                $commands += "docker-compose up --no-deps -d $($service.ServiceName)"
+                Write-Host "$index) Restart $($service.ServiceName)"
+            }
+
+            
             $index++
         }
 
