@@ -5,11 +5,11 @@ function Download-File {
     iwr "https://raw.githubusercontent.com/canerectors/buildsupport/master/docker_support/$scriptName" -UseBasicParsing -OutFile "$destination"
 }
 
-if(!$args[0]){
+$dockerSupportFolder = $args[0]
+
+if(!$dockerSupportFolder){
 	$dockerSupportFolder = '.\docker_support'
 }
-
-$dockerSupportFolder = $args[0]
 
 md $dockerSupportFolder *> $null
 
@@ -31,9 +31,7 @@ foreach($script in $scripts){
 
 Download-File PreferredPorts.txt .
 
-
 popd
-
 
 #$zapPath = '.\docker_support\docker_zap'
 
