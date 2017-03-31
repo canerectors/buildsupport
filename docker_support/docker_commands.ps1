@@ -13,7 +13,7 @@ $displayMenu = $true
 $menu = @"
 [
     {
-        Text : "Run Development Environment Docker Containers",
+        Text : "Start Containers",
         Command : "$PSScriptRoot\setup.ps1"
     },
     {
@@ -25,16 +25,16 @@ $menu = @"
         Command : "$PSScriptRoot\Container-Admin.ps1"
     },
     {
-        Text : "Launch Containers",
-        Command : "$PSScriptRoot\launch.ps1"
-    },
-    {
-        Text : "View Container Urls",
+        Text : "View Container Details",
         Command : "$PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress"
     },
     {
-        Text : "View Container Status",
-        Command : "docker-compose ps"
+        Text : "View Container Stats",
+        Command :  "start \"docker\" \" stats `$(docker ps --format '{{.Names}}')\""
+    },
+    {
+        Text : "Launch Containers",
+        Command : "$PSScriptRoot\launch.ps1"
     },
     {
         Text : "Pause Containers",
@@ -91,7 +91,7 @@ while(-not $done)
 
     if( [int]::TryParse($Action.Character.ToString(), [ref]$returnedInt) -and $returnedInt -le $menu.Count -and $returnedInt -gt 0) {
         Write-Host
-        Invoke-Expression $($menu[$returnedInt - 1]).Command | Out-Null
+        Invoke-Expression $($menu[$returnedInt - 1]).Command
     }
     else {
         $done = $Action.Character -eq 13
