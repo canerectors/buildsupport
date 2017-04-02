@@ -2,7 +2,7 @@ $serviceName = (Get-Item .).Name.split('.')[2]
 
 write-host
 
-$preRun = '.\pre_container_setup.ps1'
+$preRun = '.\Run-Before-Container-Setup.ps1'
 
 if($preRun | Test-Path)
 {
@@ -13,7 +13,7 @@ docker-compose -f .\docker-compose.yaml up -d
 
 write-host
 
-$postRun = '.\post_container_setup.ps1'
+$postRun = '.\Run-After-Container-Setup.ps1'
 
 if($postRun | Test-Path)
 {
