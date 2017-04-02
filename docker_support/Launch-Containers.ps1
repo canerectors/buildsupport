@@ -1,1 +1,1 @@
-& $PSScriptRoot\View-Details.ps1 | % { if($_.Port) { & start $_.Url }}
+& $PSScriptRoot\Get-Services.ps1 | % { if($_.Port) { & start $_.Url }}

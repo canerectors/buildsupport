@@ -26,7 +26,7 @@ $menu = @"
     },
     {
         Text : "View Container Details",
-        Command : "$PSScriptRoot\View-Details.ps1 | Format-Table Name, Url, IPAddress, Status"
+        Command : "$PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress, Status"
     },
     {
         Text : "View Container Stats",

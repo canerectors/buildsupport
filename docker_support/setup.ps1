@@ -11,6 +11,6 @@ if($postRun | Test-Path)
     & $postRun
 }
 
-& $PSScriptRoot\View-Details.ps1 | Format-Table Name, Url, IPAddress
+& $PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress
 
 & $PSScriptRoot\Edit-HostsFile.ps1

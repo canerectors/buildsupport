@@ -22,8 +22,9 @@ $scripts =  "docker_commands",
             "Launch-Containers",
             "Edit-HostsFile",
 			"Clean-HostsFile",
-            "View-Details",
-            "images_remove_dangling"
+            "Get-Services",
+            "images_remove_dangling",
+			"Container-Admin"
 
 foreach($script in $scripts){
     Download-File "$script.ps1" .

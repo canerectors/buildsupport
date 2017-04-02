@@ -15,7 +15,7 @@ while(-not $done)
 	    
         $index = 1
 
-        $services = & "$PSScriptRoot\View-Details.ps1"
+        $services = & "$PSScriptRoot\Get-Services.ps1"
 
 		foreach($service in $services){
         
