@@ -12,7 +12,7 @@ foreach($service in $services){
 
     $ports = $null
 
-    if($service.NetworkSettings -and $service.NetworkSettings.Ports){
+    if($service.NetworkSettings.Ports){
         $ports = ($service.NetworkSettings.Ports | Get-Member -MemberType NoteProperty).Name | ? {$_} | Foreach { $_.ToString().Replace("/tcp","") }
     }
     
@@ -31,7 +31,11 @@ foreach($service in $services){
     $obj | add-member noteproperty Name $serviceName
     $obj | add-member noteproperty IPAddress $ip
     $obj | add-member noteproperty Port $port
-    $obj | add-member noteproperty Url "http://${serviceName}:$port"
+
+    if($port){
+        $obj | add-member noteproperty Url "http://${serviceName}:$port"
+    }
+
 	$obj | add-member noteproperty ServiceName ($serviceName -split '_')[1]
     $obj | add-member noteproperty Status $service.State.Status
     $obj | add-member noteproperty Mounts $service.Mounts
