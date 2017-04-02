@@ -8,7 +8,9 @@ if($preRun | Test-Path){
 	Write-Host Running Run-Before-Container-Setup.ps1...
     & $preRun
 	Write-Host Complete.
+	Write-Host 
 }
+
 
 docker-compose -f .\docker-compose.yaml up -d
 
