@@ -15,6 +15,8 @@ foreach($service in $services){
     if($service.NetworkSettings.Ports){
         $ports = ($service.NetworkSettings.Ports | Get-Member -MemberType NoteProperty).Name | ? {$_} | Foreach { $_.ToString().Replace("/tcp","") }
     }
+		    
+	$port = $null
     
     if($ports){
         foreach($p in $ports){
