@@ -1,4 +1,11 @@
-$services = docker inspect $(docker-compose ps -q) | ConvertFrom-Json
+$services = $null
+
+if($args[0]){
+	$services = (Invoke-Expression "docker inspect $($args[0])" | ConvertFrom-Json)[0]
+}
+else {
+	$services = docker inspect $(docker-compose ps -q) | ConvertFrom-Json
+}
 
 $preferredPorts = $(Get-Content $PSScriptRoot\PreferredPorts.txt)
 
