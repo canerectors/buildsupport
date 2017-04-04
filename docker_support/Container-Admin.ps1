@@ -33,6 +33,11 @@ function Display-SubMenu{
             $commands += "docker exec -it $($service.Name) cmd"
             Write-Host "$($commands.Length)) Open Command Prompt"
 
+            if($service.Url){
+                $commands += "start $($service.Url)"
+                Write-Host "$($commands.Length)) Launch"
+            }
+
             if($service.Status -eq "running") {
                 $commands += "docker stop $($service.Name)"
                 Write-Host "$($commands.Length)) Pause"                
