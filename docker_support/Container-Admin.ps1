@@ -43,7 +43,7 @@ function Display-SubMenu{
             }
                  
             Write-Host  
-            $commands += "docker rm -f $($service.Name)"
+            $commands += "`$done = `$true; docker rm -f $($service.Name)"
             Write-Host "$($commands.Length)) Remove"
 
             Write-Host 
