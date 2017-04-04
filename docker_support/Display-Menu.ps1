@@ -1,12 +1,6 @@
-$scriptsFolder = $args[0]
-
-if(!$scriptsFolder){
-    $scriptsFolder = '.\docker_support'
-}
-
 $done = $false
 
-$projectName = (Get-ChildItem *.sln).Name -replace ".sln", ""
+$projectName = (get-item $pwd).Name
 
 $displayMenu = $true
 
