@@ -30,7 +30,7 @@ function Display-SubMenu{
             $commands += "docker-compose logs $($service.ServiceName)"
             Write-Host "$($commands.Length)) View Logs"
 
-            $commands += "docker exec -it $($service.Name) cmd"
+            $commands += "docker exec -it $($service.Name) powershell"
             Write-Host "$($commands.Length)) Open Command Prompt"
 
             if($service.Url){
