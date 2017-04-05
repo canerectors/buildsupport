@@ -43,17 +43,17 @@ function Display-SubMenu{
                 Write-Host "$($commands.Length)) Pause"                
             }
             else {
-                $commands += "docker start $($service.Name)"
+                $commands += "docker start $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
                 Write-Host "$($commands.Length)) Resume"
             }
                  
             Write-Host  
-            $commands += "`$done = `$true; docker rm -f $($service.Name)"
+            $commands += "$PSScriptRoot\Clean-HostsFile.ps1; `$done = `$true; docker rm -f $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
             Write-Host "$($commands.Length)) Remove"
 
             Write-Host 
 
-            $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName)"
+            $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName); $PSScriptRoot\Edit-HostsFile.ps1"
             Write-Host "$($commands.Length)) Restart (Deletes and recreates container. All data is erased.)"
 
             Write-Host
