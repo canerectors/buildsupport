@@ -12,7 +12,7 @@ if($preRun | Test-Path){
 }
 
 
-docker-compose -f .\docker-compose.yaml up -d
+docker-compose up -d
 
 write-host
 
