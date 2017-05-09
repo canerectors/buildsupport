@@ -13,6 +13,8 @@ if($preRun | Test-Path){
 
 & $PSScriptRoot\Create-VolumeFolders.ps1
 
+write-host
+
 docker-compose up -d
 
 write-host
