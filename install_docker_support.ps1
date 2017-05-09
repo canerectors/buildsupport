@@ -24,7 +24,8 @@ $scripts =  "Display-Menu",
 			"Clean-HostsFile",
             "Get-Services",
             "images_remove_dangling",
-			"Container-Admin"
+			"Container-Admin",
+			"Create-VolumeFolders"
 
 foreach($script in $scripts){
     Download-File "$script.ps1" .
