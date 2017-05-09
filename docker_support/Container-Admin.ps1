@@ -49,7 +49,7 @@ function Display-SubMenu{
 
             Write-Host 
 
-            $commands += "docker stop $($service.Name); docker start $($service.ServiceName); $PSScriptRoot\Edit-HostsFile.ps1"
+            $commands += "docker stop $($service.Name); docker start $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
             Write-Host "$($commands.Length)) Restart"
 
             Write-Host
