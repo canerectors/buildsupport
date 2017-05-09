@@ -55,7 +55,8 @@ while(-not $done)
 
         Write-Host "Select An Action:`n"
 
-        $index = 1
+        $index = 49
+
 		ForEach($item in $menu){        
 
             if($item.Skip -eq "true"){
@@ -68,9 +69,13 @@ while(-not $done)
                 $color = $item.Color
             }
             
-            Write-Host "$index) $($item.Text)" -ForegroundColor $color
+            Write-Host "$([char]$index)) $($item.Text)" -ForegroundColor $color
+
             $index++
                         
+            if($index -eq 58){
+                $index = 65
+            }
         }
 
         Write-Host
@@ -81,14 +86,18 @@ while(-not $done)
 
     $Action = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")    
 
-    [int]$returnedInt = 0
+    $char = $Action.Character - 48
 
-    if( [int]::TryParse($Action.Character.ToString(), [ref]$returnedInt) -and $returnedInt -le $menu.Count -and $returnedInt -gt 0) {
+    if($char -gt 9){
+        $char = $char - 39
+    }
+
+    if($char -le $menu.Length -and $char -gt 0){
         Write-Host
-        Invoke-Expression $($menu[$returnedInt - 1]).Command
+        Invoke-Expression $($menu[$char - 1]).Command
     }
     else {
         $done = $Action.Character -eq 13
         $displayMenu = $false
-    }  
+    }   
 }
