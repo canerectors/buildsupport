@@ -15,6 +15,10 @@ $menu = @"
         Command : "docker-compose pull; $PSScriptRoot\images_remove_dangling.ps1"
     },
     {
+        Text : "Launch Portainer",
+        Command : "$PSScriptRoot\Launch-Portainer.ps1"
+    },
+    {
         Text : "Container Admin",
         Command : "$PSScriptRoot\Container-Admin.ps1"
     },
@@ -31,7 +35,7 @@ $menu = @"
         Command : "$PSScriptRoot\Launch-Containers.ps1"
     },
     {
-        Text : "Pause Containers",
+        Text : "Stop Containers",
         Command : "docker-compose stop"
     },
     {
