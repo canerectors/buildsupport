@@ -99,8 +99,14 @@ function Display-Menu{
 	    
             $index = 49
 
-            $services = & "$PSScriptRoot\Get-Services.ps1"
+            $services = @(& "$PSScriptRoot\Get-Services.ps1")
 
+			if($services.Length -eq 1){
+				Display-SubMenu $($services[0]).Name
+				$done = $true
+				continue
+			}
+			
 		    foreach($service in $services){
                 
                 $color = 'DarkGreen'
