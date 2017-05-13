@@ -25,7 +25,8 @@ $scripts =  "Display-Menu",
             "Get-Services",
             "images_remove_dangling",
 			"Container-Admin",
-			"Create-VolumeFolders"
+			"Create-VolumeFolders",
+			"Launch-Portainer"
 
 foreach($script in $scripts){
     Download-File "$script.ps1" .
