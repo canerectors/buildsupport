@@ -146,7 +146,7 @@ function Display-Menu{
         }
         else {
             $done = $Action.Character -eq 13
-            $displayMenu = $false
+            #$displayMenu = $false
         }  
 
         #if($Action.Character
