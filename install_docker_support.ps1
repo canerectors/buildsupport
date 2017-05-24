@@ -26,7 +26,8 @@ $scripts =  "Display-Menu",
             "images_remove_dangling",
 			"Container-Admin",
 			"Create-VolumeFolders",
-			"Launch-Portainer"
+			"Launch-Portainer",
+			"MonitorDockerEvents"
 
 foreach($script in $scripts){
     Download-File "$script.ps1" .
