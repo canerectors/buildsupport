@@ -34,7 +34,7 @@ foreach($service in $services){
         }
     }
 
-    $ip = docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $serviceName
+    $ip = $service.NetworkSettings.Networks.nat.IPAddress
 
     $obj = new-object psobject
     $obj | add-member noteproperty Name $serviceName
