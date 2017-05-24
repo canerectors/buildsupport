@@ -43,21 +43,21 @@ function Display-SubMenu{
                 Write-Host "$($commands.Length)) Pause"                
             }
             else {
-                $commands += "docker start $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
+                $commands += "docker start $($service.Name)"
                 Write-Host "$($commands.Length)) Resume"
             }            
 
             Write-Host 
 
-            $commands += "docker stop $($service.Name); docker start $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
+            $commands += "docker stop $($service.Name); docker start $($service.Name)"
             Write-Host "$($commands.Length)) Restart"
 
             Write-Host
 
-            $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName); $PSScriptRoot\Edit-HostsFile.ps1"
+            $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName)"
             Write-Host "$($commands.Length)) Recreate (Deletes and recreates container. All data is erased.)"
 
-            $commands += "$PSScriptRoot\Clean-HostsFile.ps1; `$done = `$true; docker rm -f $($service.Name); $PSScriptRoot\Edit-HostsFile.ps1"
+            $commands += "`$done = `$true; docker rm -f $($service.Name)"
             Write-Host "$($commands.Length)) Remove"
             
             Write-Host
@@ -146,18 +146,7 @@ function Display-Menu{
         }
         else {
             $done = $Action.Character -eq 13
-            #$displayMenu = $false
         }  
-
-        #if($Action.Character
-
-        #if( [int]::TryParse($Action.Character.ToString(), [ref]$returnedInt) -and $returnedInt -le $services.Length -and $returnedInt -gt 0) {
-            #Display-SubMenu $($services[$returnedInt - 1]).Name
-        #}
-        #else {
-        #    $done = $Action.Character -eq 13
-        #    $displayMenu = $false
-        #}  
     }
 }
 

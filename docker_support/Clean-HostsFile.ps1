@@ -1,9 +1,12 @@
-$services = & $PSScriptRoot\Get-Services.ps1
+$services = @($args[0])
+
+if($services.Length -le 0){ return; }
 
 $hostsPath = "$env:windir\System32\drivers\etc\hosts"
 
 $hosts = get-content $hostsPath
 
+Write-Host
 Write-Host Removing old entries from host file...
 
 $count = 0
@@ -17,7 +20,7 @@ $hosts = $hosts | Foreach {
     
         $serviceName = $_.Name
 
-        if ($hostLine -split '\s+' -contains ("#" + $serviceName)) { $addEntry = $false; $count++ }
+        if ($hostLine -split '\s+' -contains ("#" + $serviceName)) { $addEntry = $false; $count++; Write-Host Removed Service: $serviceName }
     
     }
 
@@ -25,5 +28,6 @@ $hosts = $hosts | Foreach {
 }
 
 Write-Host "Removed $count entries."
+Write-Host
 
 $hosts | Out-File $hostsPath -enc ascii
