@@ -8,6 +8,7 @@ $hosts = get-content $hostsPath
 
 Write-Host
 Write-Host Removing old entries from host file...
+Write-Host
 
 $count = 0
 
@@ -27,6 +28,7 @@ $hosts = $hosts | Foreach {
     if($addEntry){$hostLine}
 }
 
+Write-Host
 Write-Host "Removed $count entries."
 Write-Host
 

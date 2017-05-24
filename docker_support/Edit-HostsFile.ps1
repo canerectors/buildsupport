@@ -13,12 +13,14 @@ if(!(Test-Path ($hostsPathOrig))){ Write-Host "Backing up $hostsPath to $hostsPa
 
 Write-Host
 Write-Host Adding services to hosts file...
+Write-Host
 
 $hosts = get-content $hostsPath
 
 #append docker services to hosts file
 $services | ForEach-Object { $hosts += $_.IPAddress + "`t" + $_.Name  + "`t`t#" + $_.Name; Write-Host Added Service: $_.Name at IP: $_.IPAddress}
 
+Write-Host
 Write-Host "Added $($services.Length) entries to hosts file."
 Write-Host
 

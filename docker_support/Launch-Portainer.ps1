@@ -9,6 +9,6 @@ docker start portainer >$null 2>&1
 
 $service = Invoke-Expression "$PSScriptRoot\Get-Services.ps1 portainer"
 
-$url = "http://$($service.IPAddress):$($service.Port)"
+$url = "http://portainer:$($service.Port)"
 
 start $url

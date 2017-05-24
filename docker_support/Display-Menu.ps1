@@ -1,3 +1,5 @@
+& $PSScriptRoot\MonitorDockerEvents.ps1
+
 $done = $false
 
 $projectName = (get-item $pwd).Name
