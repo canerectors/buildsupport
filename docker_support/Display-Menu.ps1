@@ -109,6 +109,7 @@ while(-not $done)
     if($done){
         Write-Host Cleaning up... -NoNewline
         & $PSScriptRoot\Clean-HostsFile.ps1
+        & docker volume prune -f
         Write-Host Done.
     }
 }
