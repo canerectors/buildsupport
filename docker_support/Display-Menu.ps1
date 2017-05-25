@@ -104,7 +104,6 @@ while(-not $done)
     }
     else {
         $done = $Action.Character -eq 13
-        $displayMenu = $false
     }   
 
     if($done){

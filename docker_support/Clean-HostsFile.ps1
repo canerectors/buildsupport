@@ -7,9 +7,8 @@ function Remove-All{
 
     $hosts = (get-content $hostsPath).Trim();
 
-    Write-Host
-    Write-Host Removing old entries from host file...
-    Write-Host
+    #Write-Host Removing old entries from host file...
+    #Write-Host
 
     $count = 0
 
@@ -34,9 +33,9 @@ function Remove-All{
         if($addEntry){$hostLine}
     }
 
-    Write-Host
-    Write-Host "Removed $count entries."
-    Write-Host
+
+    #Write-Host "Removed $count entries."
+    #Write-Host
 
     if($count -gt 0){
         $hosts | Out-File $hostsPath -enc ascii
@@ -52,9 +51,8 @@ function Remove-Except{
 
     $hosts = (get-content $hostsPath).Trim();
 
-    Write-Host
-    Write-Host Removing old entries from host file...
-    Write-Host
+    #Write-Host Removing old entries from host file...
+    #Write-Host
 
     $count = 0
 
@@ -79,9 +77,8 @@ function Remove-Except{
         if($addEntry){$hostLine}
     }
 
-    Write-Host
-    Write-Host "Removed $count entries."
-    Write-Host
+    #Write-Host "Removed $count entries."
+    #Write-Host
 
     if($count -gt 0){
         $hosts | Out-File $hostsPath -enc ascii

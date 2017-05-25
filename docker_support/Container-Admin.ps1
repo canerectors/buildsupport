@@ -30,8 +30,10 @@ function Display-SubMenu{
             $commands += "docker-compose logs $($service.ServiceName)"
             Write-Host "$($commands.Length)) View Logs"
 
-            $commands += "docker exec -it $($service.Name) powershell"
-            Write-Host "$($commands.Length)) Open Command Prompt"
+            if($service.Status -eq "running") {
+                $commands += "docker exec -it $($service.Name) powershell"
+                Write-Host "$($commands.Length)) Open Command Prompt"
+            }
 
             if($service.Url){
                 $commands += "start $($service.Url)"
@@ -49,10 +51,11 @@ function Display-SubMenu{
 
             Write-Host 
 
-            $commands += "docker stop $($service.Name); docker start $($service.Name)"
-            Write-Host "$($commands.Length)) Restart"
-
-            Write-Host
+            if($service.Status -eq "running") {
+                $commands += "docker stop $($service.Name); docker start $($service.Name)"
+                Write-Host "$($commands.Length)) Restart"
+                Write-Host
+            }            
 
             $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName)"
             Write-Host "$($commands.Length)) Recreate (Deletes and recreates container. All data is erased.)"
@@ -75,8 +78,7 @@ function Display-SubMenu{
             Invoke-Expression $($commands[$returnedInt - 1])
         }
         else {
-            $done = $Action.Character -eq 13
-            $displayMenu = $false
+            $done = $Action.Character -eq 13          
         }  
     }
 }
