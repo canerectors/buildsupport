@@ -1,4 +1,4 @@
-& $PSScriptRoot\MonitorDockerEvents.ps1
+Start-Process powershell -ArgumentList "-noexit -noprofile $PSScriptRoot\MonitorDockerEvents.ps1" -WindowStyle Hidden
 
 $done = $false
 
@@ -46,7 +46,7 @@ $menu = @"
     },
     {
         Text : "Remove Docker Containers (This will destroy all data located inside the containers)",
-        Command : "$PSScriptRoot\Clean-HostsFile.ps1; docker-compose down --remove-orphans",
+        Command : "docker-compose down --remove-orphans",
         Skip : "true",
         Color : "Red"
     } 
@@ -106,4 +106,10 @@ while(-not $done)
         $done = $Action.Character -eq 13
         $displayMenu = $false
     }   
+
+    if($done){
+        Write-Host Cleaning up... -NoNewline
+        & $PSScriptRoot\Clean-HostsFile.ps1
+        Write-Host Done.
+    }
 }
