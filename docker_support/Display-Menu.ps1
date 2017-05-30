@@ -116,7 +116,7 @@ while(-not $done)
         Write-Host Cleaning up... -NoNewline
         & $PSScriptRoot\Clean-HostsFile.ps1
         & docker volume prune -f
-        & $PSScriptRoot\images_remove_dangling.ps1
+        & $PSScriptRoot\images_remove_dangling.ps1 >$null 2>&1
         Write-Host Done.
     }
 }
