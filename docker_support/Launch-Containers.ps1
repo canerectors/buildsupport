@@ -1,1 +1,1 @@
-& $PSScriptRoot\Get-Services.ps1 | % { if($_.Port) { & start $_.Url }}
+& $PSScriptRoot\Get-Services.ps1 $(docker-compose -p $($args[0]) ps -q) | % { if($_.Port) { & start $_.Url }}

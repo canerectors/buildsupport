@@ -1,3 +1,5 @@
+$projectName = $args[0]
+
 function Display-SubMenu{
     $done = $false
 
@@ -27,7 +29,7 @@ function Display-SubMenu{
             Write-Host "Status: $($service.Status)" -ForegroundColor $color
             Write-Host
 
-            $commands += "docker-compose logs $($service.ServiceName)"
+            $commands += "docker-compose -p $projectName logs $($service.ServiceName)"
             Write-Host "$($commands.Length)) View Logs"
 
             if($service.Status -eq "running") {
@@ -57,7 +59,7 @@ function Display-SubMenu{
                 Write-Host
             }            
 
-            $commands += "docker rm -f $($service.Name); docker-compose up --no-deps -d $($service.ServiceName)"
+            $commands += "docker rm -f $($service.Name); docker-compose -p $projectName up --no-deps -d $($service.ServiceName)"
             Write-Host "$($commands.Length)) Recreate (Deletes and recreates container. All data is erased.)"
 
             $commands += "`$done = `$true; docker rm -f $($service.Name)"
@@ -101,7 +103,7 @@ function Display-Menu{
 	    
             $index = 49
 
-            $services = @(& "$PSScriptRoot\Get-Services.ps1")
+            $services = @(Invoke-Expression "$PSScriptRoot\Get-Services.ps1 `$(docker-compose -p $projectName ps -q)")
 
 			if($services.Length -eq 1){
 				Display-SubMenu $($services[0]).Name

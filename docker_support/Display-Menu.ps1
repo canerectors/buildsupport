@@ -1,8 +1,14 @@
 Start-Process powershell -ArgumentList "-noexit -noprofile $PSScriptRoot\MonitorDockerEvents.ps1" -WindowStyle Hidden
 
-$done = $false
+if(Test-Path './Project.ps1'){
+    . ./Project.ps1
+}
 
-$projectName = (get-item $pwd).Name
+if(!$ProjectName){
+    $projectName = (get-item $pwd).Name.Replace(".", "").ToLower()
+}
+
+$done = $false
 
 $displayMenu = $true
 
@@ -10,11 +16,11 @@ $menu = @"
 [
     {
         Text : "Start Containers",
-        Command : "$PSScriptRoot\setup.ps1"
+        Command : "$PSScriptRoot\Run-Containers.ps1 $projectName"
     },
     {
         Text : "Pull New Images",
-        Command : "docker-compose pull; $PSScriptRoot\images_remove_dangling.ps1"
+        Command : "docker-compose pull"
     },
     {
         Text : "Launch Portainer",
@@ -22,11 +28,11 @@ $menu = @"
     },
     {
         Text : "Container Admin",
-        Command : "$PSScriptRoot\Container-Admin.ps1"
+        Command : "$PSScriptRoot\Container-Admin.ps1 $projectName"
     },
     {
         Text : "View Container Details",
-        Command : "$PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress, Status"
+        Command : "$PSScriptRoot\Get-Services.ps1 `$(docker-compose -p $projectName ps -q) | Format-Table Name, Url, IPAddress, Status"
     },
     {
         Text : "View Container Stats",
@@ -34,19 +40,19 @@ $menu = @"
     },
     {
         Text : "Launch Containers",
-        Command : "$PSScriptRoot\Launch-Containers.ps1"
+        Command : "$PSScriptRoot\Launch-Containers.ps1 $projectName"
     },
     {
         Text : "Stop Containers",
-        Command : "docker-compose stop"
+        Command : "docker-compose -p $projectName stop"
     },
     {
         Text : "View Logs",
-        Command : "start \"docker-compose\" \"logs -f\""
+        Command : "start \"docker-compose\" \"-p $projectName logs -f\""
     },
     {
         Text : "Remove Docker Containers (This will destroy all data located inside the containers)",
-        Command : "docker-compose down --remove-orphans",
+        Command : "docker-compose -p $projectName down --remove-orphans",
         Skip : "true",
         Color : "Red"
     } 
@@ -110,6 +116,7 @@ while(-not $done)
         Write-Host Cleaning up... -NoNewline
         & $PSScriptRoot\Clean-HostsFile.ps1
         & docker volume prune -f
+        & $PSScriptRoot\images_remove_dangling.ps1
         Write-Host Done.
     }
 }

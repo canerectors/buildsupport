@@ -18,7 +18,7 @@ pushd $dockerSupportFolder
 Write-Host "Installing Docker Support files to: $(Get-Location)"
 
 $scripts =  "Display-Menu",
-            "setup",
+            "Run-Containers",
             "Launch-Containers",
             "Edit-HostsFile",
 			"Clean-HostsFile",

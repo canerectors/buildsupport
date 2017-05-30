@@ -1,4 +1,4 @@
-$serviceName = (Get-Item .).Name.split('.')[2]
+$projectName = $args[0]
 
 write-host
 
@@ -15,7 +15,7 @@ if($preRun | Test-Path){
 
 write-host
 
-docker-compose up -d
+docker-compose -p $projectName up -d 
 
 write-host
 
@@ -26,4 +26,4 @@ if($postRun | Test-Path)
     & $postRun
 }
 
-& $PSScriptRoot\Get-Services.ps1 | Format-Table Name, Url, IPAddress
+& $PSScriptRoot\Get-Services.ps1 $(docker-compose -p $projectName ps -q) | Format-Table Name, Url, IPAddress

@@ -91,6 +91,6 @@ if($args[0]){
     Remove-All($args[0])
 }
 else{
-    $services = Invoke-Expression "$PSScriptRoot\Get-Services.ps1 all"
+    $services = Invoke-Expression "$PSScriptRoot\Get-Services.ps1"
     Remove-Except($services)
 }
