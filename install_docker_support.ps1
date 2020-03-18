@@ -8,7 +8,7 @@ function Download-File {
 $dockerSupportFolder = $args[0]
 
 if(!$dockerSupportFolder){
-	$dockerSupportFolder = '.\docker_support'
+	$dockerSupportFolder = '.\.docker_support'
 }
 
 md $dockerSupportFolder *> $null
